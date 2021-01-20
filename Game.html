@@ -1,0 +1,188 @@
+
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+<html lang=pl>
+  <head>
+  <title>Memory Game - Gra Pamięciowa</title>
+  
+ <link rel="stylesheet" type="text/css" href="Game.css" />
+ 
+  </head>
+  
+  <body>
+  
+<div id="body">
+
+     <div id="top">
+       <div id="naglowek">
+	   <div id="temat">
+         <a style="color: silver">Memory Game - Gra Pamięciowa</a>
+		 </div>
+		  </div>
+         <ul id="menu-bar">
+		<li class="active"><a href="Game.html">Strona Główna</a></li>
+		 
+		</ul>
+       </div>
+       <div id="tresc">
+         
+         <br>
+		   <div id="box1"><h1>Wybierz Memory Game </h1>		
+		   <br><br>
+		  <div id="wybierz">
+		   <a  class="button1" href="2D.html"  >Obiekt w 2D</a>
+		   <a  class="button2" href="3D.html"  >Obiekt w 3D</a>
+		   
+		   </div>
+		   <br><br><br><br><br>
+			<h2 class="stan">Standardowy </h2>
+			<h2 class="troj">Trójwymiarowy</h2>
+			</div> 
+		</div>
+		   
+	 </div>
+  </body>
+</html>
+		 
+		 
+		 <!--<div id="login"> 
+		 <button class="button" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Loguj</button>
+
+<div id="id01" class="modal">
+  
+  <form class="modal-content animate" action="/action_page.php">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      
+    </div>
+
+    <div class="container">
+      <label><b>Nazwa</b></label>
+      <input type="text" placeholder="Wpisz Nazwa" name="nazwa" id="nazwa" required>
+
+      <label><b>Hasło</b></label>
+      <input type="password" placeholder="Wpisz Hasło" name="Haslo" id="Haslo" required>
+        
+      <button type="submit" value="Login" id="submit" onclick="validate()">Loguj</button>
+      <input type="checkbox" checked="checked"> Zapamnietaj 
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Koniec</button>
+      
+	  <button type="button" onclick="document.getElementById('forgo').style.display='block'" class="forgot">Zapomniałeś Hasła?</button>
+    </div>
+	<div class="signup">
+	<button type="button" onclick="document.getElementById('id02').style.display='block'" class="signupbtn">Zarejestruj się	</button>
+	
+    </div> 
+ </form>
+</div>
+
+<script>
+var attempt = 3;
+function validate(){
+var nazwa = document.getElementById("nazwa").value;
+var haslo = document.getElementById("haslo").value;
+if ( username == "Lukekuro" && haslo == "123"){
+window.location = "choossee.html"; // Redirecting to other page.
+return false;
+}
+else{
+attempt --;// Decrementing by one.
+alert("You have left "+attempt+" attempt;");
+// Disabling fields after 3 attempts.
+if( attempt == 0){
+document.getElementById("nazwa").disabled = true;
+document.getElementById("haslo").disabled = true;
+document.getElementById("submit").disabled = true;
+return false;
+}
+}
+}
+
+</script>
+
+
+<div id="id02" class="modal">
+
+  <form class="modal-content animate" action="/action_page.php">
+  <div class="imgcontainer">
+  <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+  </div>
+    <div class="container">
+	<label><b>Nazwa</b></label>
+      <input type="text" placeholder="Wpisz Nazwe" name="nazwa1" id="nazwa1" required>
+      <label><b>Email</b></label>
+      <input type="text" placeholder="Wpisz Email" name="email" required>
+
+      <label><b>Hasło</b></label>
+      <input type="password" placeholder="Wpisz Hasła" name="psw" required>
+
+      <label><b>Powtórz Hasło</b></label>
+      <input type="password" placeholder="Wpisz ponownie Hasła" name="psw-repeat" required>
+	  <div class="clearfix">
+	  <button type="submit" >Zarejestruj</button>
+	  
+        <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn1">Koniec</button>
+        
+      </div>
+    </div>
+  </form>
+</div>
+<div id="forgo" class="modal">
+
+  <form class="modal-content animate" action="/action_page.php">
+  <div class="imgcontainer">
+  <span onclick="document.getElementById('forgo').style.display='none'" class="close" title="Close Modal">&times;</span>
+  </div>
+    <div class="container">
+	<label><b>Nazwa</b></label>
+      <input type="text" placeholder="Wpisz nazwa" name="nazwa" required>
+	  <label><b><center>Albo</center></b></label>
+      <label><b>Email</b></label>
+      <input type="text" placeholder="Wpisz Email" name="email" required>
+		
+      
+	  
+	  <div class="clearfix">
+	  <button type="submit" >Wyślij To</button>
+	  
+        <button type="button" onclick="document.getElementById('forgo').style.display='none'" class="cancelbtn1">Koniec</button>
+        
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+<script>
+// Get the modal
+var modal = document.getElementById('id02');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+var modal = document.getElementById('forgo');
+window.onclick = function (event){
+	if (event.target == modal) {
+		modal.style.display = "none";
+		}
+}
+</script>
+
+		 </div>
+		 -->
+      

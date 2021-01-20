@@ -1,0 +1,194 @@
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+<html lang=pl>
+  <head>
+  <title>Game in 2D</title>
+ <link rel="stylesheet" type="text/css" href="Game.css" />
+  </head>  
+  <body>  
+<div id="body">
+     <div id="top">
+       <div id="naglowek">
+       <div id="temat">
+         <a style="color: silver">Memory Game in 2D - Gra Pamięciowa w 2D</a>
+         </div>
+       </div>      
+         <ul id="menu-bar">
+        <li class="active"><a href="Game.html">Strona Główna</a></li>
+         <li><a href="#">Memory Game</a>
+         <ul>
+            <li><a href="2D.html">Obiekt w 2D</a></li>
+            <li><a href="3D.html">Obiekt w 3D</a></li>
+         </ul>
+        </ul>
+       </div>
+       <div id="tresc">
+  <br>
+  <style>
+  div#memory_board{
+  background: #CCC;
+  border: #999 1px solid;
+  width: 800px;
+  height: 540px;
+  padding: 24px;
+  margin: 0px auto;
+  }
+  div#memory_board > div{
+ background: green no-repeat;
+  border: #000 1px solid;
+  width: 71px;
+  height: 71px;
+  float: left;
+  margin: 10px;
+  padding:20px;
+  font-size: 64px;
+  cursor: pointer;
+  text-align: center;
+  }
+  </style>
+  <script>
+  var startclick = false;
+  var srodku_kolor = 'yellow';
+  var zew_kolor = 'green';
+  var alfabet = ['A','A','B','B','C','C','D','D','E','E','F','F','G','G','H','H','I','I','J','J','K','K','L','L'];
+  var wartosc = [];
+  var pudelko = [];
+  var viewpudelko = [];
+  var ileviewpudelko = 0;
+  var obracanie = 0;
+  Array.prototype.czlapac = function(){
+    var i= this.length, j, temp;
+    while(--i>0){
+    j = Math.floor(Math.random() * (i+1));
+    temp = this[j];
+    this[j] = this[i];
+    this[i] = temp;
+    }
+}
+function nowybox(){
+    obracanie = 0;
+    var wyjscie = '';
+    alfabet.czlapac();
+    for(var i = 0; i < alfabet.length; i++) {
+        wyjscie += '<div id="tile_'+i+'" class="box_button" onclick="memoryobrocenie(this,\''+alfabet[i]+'\')"></div>';
+    }
+    document.getElementById('memory_board').innerHTML = wyjscie;
+}
+function memoryobrocenie(tile,val){
+    if(!startclick)
+    {
+        gameStart = true;
+    }
+    if(tile.innerHTML == "" && wartosc.length < 2){
+        tile.style.background = srodku_kolor;
+        tile.innerHTML = val;
+        if(wartosc.length == 0){
+            wartosc.push(val);
+            pudelko.push(tile.id);
+      viewpudelko.push(tile.id);
+      ileviewpudelko++;
+        } else if(wartosc.length == 1){
+            wartosc.push(val);
+            pudelko.push(tile.id);
+      viewpudelko.push(tile.id);
+      ileviewpudelko++;
+            if(wartosc[0] == wartosc[1]){
+                obracanie += 2;
+        ileviewpudelko+=2;
+                wartosc = [];
+                pudelko = [];
+                if(obracanie == alfabet.length){
+                    alert("Gratuluję, teraz automatycznie włącza się od nowa");
+                    document.getElementById('memory_board').innerHTML = "";
+                    nowybox();
+                }
+            } else {
+                function powrotem(){
+                    // Flip the 2 tiles back over
+                    var tile_1 = document.getElementById(pudelko[0]);
+                    var tile_2 = document.getElementById(pudelko[1]);
+                    tile_1.style.background = zew_kolor;
+                    tile_1.innerHTML = "";
+                    tile_2.style.background = zew_kolor;
+                    tile_2.innerHTML = "";
+                    // Clear both arrays
+                    wartosc = [];
+                    pudelko = [];
+                  ileviewpudelko-=2;
+                  viewpudelko.pop();
+                  viewpudelko.pop();
+                }
+                setTimeout(powrotem, 700);
+            }
+        }
+    }  
+}
+var KolorTla;
+var KolorZew;
+var KolorWew;
+function changeColor(event)
+{
+  for(var i=0;i<ileviewpudelko; i++)
+  {
+    document.getElementById(viewpudelko[i]).style.background = srodku_kolor;
+  }
+}
+window.addEventListener("load", startup, false);
+function startup() {
+  KolorTla = document.querySelector("#KolorTla");
+  KolorTla.value = "#F00";
+  KolorTla.addEventListener("input", updateColorBackground, false);
+  KolorTla.addEventListener("change", updateColorBackground, false);
+  KolorTla.select();
+ 
+  KolorZew = document.querySelector("#KolorZew");
+  KolorZew.value = "#0F0";
+  KolorZew.addEventListener("input", updateColorOut, false);
+  KolorZew.addEventListener("change", updateColorOut, false);
+  KolorZew.select();
+ 
+  KolorWew = document.querySelector("#KolorWew");
+  KolorWew.value = srodku_kolor;
+  KolorWew.addEventListener("input", updateColorIn, false);
+  KolorWew.addEventListener("change", updateColorIn, false);
+  KolorWew.select();
+}
+function updateColorBackground(event) {
+  var kolor = document.querySelector("#memory_board");
+    kolor.style.backgroundColor = event.target.value;
+  document.querySelectorAll("#memory_board").forEach(function(kolor) {
+    kolor.style.backgroundColor = event.target.value;  
+  });
+}
+function updateColorIn(event) {
+  srodku_kolor = event.target.value;
+  changeColor(event);
+}  
+function updateColorOut(event)
+{
+    var kolor = document.querySelector("div.box_button");
+    kolor.style.backgroundColor = event.target.value;
+    document.querySelectorAll("div.box_button").forEach(function(kolor){
+        kolor.style.backgroundColor = event.target.value;
+    });
+    zew_kolor = event.target.value;
+}
+   </script>
+  </head>
+  <div id="memory_board"></div>
+  <script>nowybox();</script>
+  </div>
+<center>
+<fieldset class="zmiennosc1">
+   <legend> Kolory </legend>
+   <label for="KolorTla">Tła kolor:</label>
+<input type="color" value="#ff0000" id="KolorTla" />
+<label for="KolorZew">Zewnętrzne kolor:</label>
+<input type="color" value="#ff0000" id="KolorZew" />
+ <label for="KolorWew">Wewnętrzy kolor:</label>
+<input type="color" value="#00ff00"  id="KolorWew" />
+</fieldset>
+<br>
+</center>
+</div>  
+  </body>
+</html>
